@@ -1,24 +1,21 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 
 from bmi.models import BMI
 
 def home(request):
-    return HttpResponse('home')
+    #return HttpResponse('home')
+    if request.method == 'POST':
+        name = request.POST.get('name', None)
+        return redirect('/bmi/' + name + '/')
 
+    return render(request, 'bmi/home.html', {})
+    
 
 def member_bmi(request, name):
     bmi_query_set_list = BMI.objects.filter(name=name)
 
-    '''
-    bmi_list = [list(bmi_query_set)]
-
-    for i in range(len(bmi_list)):
-        weight = float(bmi_list[i].weight)
-        height = float(bmi_list[i].height) / 100.0
-
-        bmi_list[i] = weight / (height * height)
-    '''
     bmi_list = []
     for bmi in bmi_query_set_list:
         bmi_list.append(bmi.calculate_bmi())

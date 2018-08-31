@@ -1,13 +1,14 @@
 {% extends 'bmi/base.html' %}
 {% load staticfiles %}
 {% block content %}
-    <br>
-    <p>이름 : {{ member_name }}</p>
+    <div align='center'>
+      <p>이름 : {{ member_name }}</p>
+      
+      {% for bmi in bmi_list %}
+        <div class="bmi_info">
+            <p>{{ bmi }}</p>
+        </div>
+      {% endfor %}
     
-    {% for bmi in bmi_list %}
-      <div class="bmi_info">
-          <p>{{ bmi }}</p>
-      </div>
-    {% endfor %}
-
+    </div>
 {% endblock %}
