@@ -9,3 +9,9 @@ class BMI(models.Model):
 
     date = models.DateTimeField(
             default=timezone.now)
+
+    def calculate_bmi(self):
+        weight = float(self.weight)
+        height = float(self.height) / 100.0
+
+        return weight / (height * height)
