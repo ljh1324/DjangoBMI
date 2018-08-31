@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bmi',                          # aplication 생성 후 사용 알림
 ]
 
 MIDDLEWARE = [
