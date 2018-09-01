@@ -6,6 +6,8 @@ from bmi.models import BMI
 
 from .forms import BMIForm
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def home(request):
@@ -32,7 +34,7 @@ def member_bmi(request, name):
     plt.xticks(xn, date_list)
     plt.savefig('bmi/static/temp/' + name + '.png')
     plt.close()
-    
+
     img_url = '/static/temp/' + name + '.png'
     
     return render(request, 'bmi/member_bmi.html', {'member_name': name, 'img_url' : img_url})
