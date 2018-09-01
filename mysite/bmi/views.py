@@ -6,6 +6,8 @@ from bmi.models import BMI
 
 from .forms import BMIForm
 
+import matplotlib.pyplot as plt
+
 def home(request):
     #return HttpResponse('home')
     if request.method == 'POST':
@@ -19,10 +21,18 @@ def member_bmi(request, name):
     bmi_query_set_list = BMI.objects.filter(name=name)
 
     bmi_list = []
+    date_list = []
     for bmi in bmi_query_set_list:
         bmi_list.append(bmi.calculate_bmi())
-
-    return render(request, 'bmi/member_bmi.html', {'member_name': name, 'bmi_list': bmi_list})
+        date_list.append(bmi.get_date())
+    
+    plt.ylabel('BMI')
+    plt.plot(date_list, bmi_list)
+    plt.savefig('bmi/static/temp/' + name + '.png')
+    
+    img_url = '/static/temp/' + name + '.png'
+    
+    return render(request, 'bmi/member_bmi.html', {'member_name': name, 'img_url' : img_url})
 
 
 def bmi_new(request):

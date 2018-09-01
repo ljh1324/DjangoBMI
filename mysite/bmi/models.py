@@ -15,3 +15,6 @@ class BMI(models.Model):
         height = float(self.height) / 100.0
 
         return weight / (height * height)
+
+    def get_date(self):
+        return str(self.date.year).zfill(4) + str(self.date.month).zfill(2)  + str(self.date.day).zfill(2)  + '\n' + str(self.date.hour).zfill(2) + ':' + str(self.date.minute).zfill(2) 
