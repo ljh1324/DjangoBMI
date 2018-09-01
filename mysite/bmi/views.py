@@ -31,6 +31,7 @@ def member_bmi(request, name):
     plt.plot(xn, bmi_list)
     plt.xticks(xn, date_list)
     plt.savefig('bmi/static/temp/' + name + '.png')
+    plt.close()
     
     img_url = '/static/temp/' + name + '.png'
     
