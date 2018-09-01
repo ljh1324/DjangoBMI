@@ -26,8 +26,10 @@ def member_bmi(request, name):
         bmi_list.append(bmi.calculate_bmi())
         date_list.append(bmi.get_date())
     
+    xn = range(len(date_list))
     plt.ylabel('BMI')
-    plt.plot(date_list, bmi_list)
+    plt.plot(xn, bmi_list)
+    plt.xticks(xn, date_list)
     plt.savefig('bmi/static/temp/' + name + '.png')
     
     img_url = '/static/temp/' + name + '.png'
